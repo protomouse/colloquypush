@@ -9,6 +9,7 @@
 #include "znc.h"
 #include "Chan.h"
 #include "User.h"
+#include "IRCNetwork.h"
 #include "Modules.h"
 #include <time.h>
 
@@ -659,8 +660,7 @@ public:
 		}
 
 		if (iBadge != 0) {
-			CUser* pUser = GetUser();
-			if (pUser && m_bAwayOnlyPush && !pUser->IsIRCAway()) {
+			if (m_bAwayOnlyPush && !m_pNetwork->IsIRCAway()) {
 				return false;
 			}
 		}
@@ -707,7 +707,7 @@ public:
 		}
 
 		bool bRet = true;
-		vector<CClient*>& vpClients = m_pUser->GetClients();
+		vector<CClient*>& vpClients = m_pNetwork->GetClients();
 
 		// Cycle through all of the cached devices
 		for (map<CString, CDevice*>::iterator it = m_mspDevices.begin(); it != m_mspDevices.end(); it++) {
@@ -732,7 +732,7 @@ public:
 			// If it's a highlight, then we need to make sure it matches a highlited word
 			if (bHilite) {
 				// Test our current irc nick
-				const CString& sMyNick(m_pUser->GetIRCNick().GetNick());
+				const CString& sMyNick(m_pNetwork->GetIRCNick().GetNick());
 				bool bMatches = Test(sMyNick, sMessage) || Test(sMyNick + "?*", sMessage);
 
 				// If our nick didn't match, test the list of keywords for this device
@@ -816,4 +816,5 @@ public:
 private:
 	map<CString, CDevice*>	m_mspDevices;	// map of token to device info for clients who have sent us PUSH info
 };
-MODULEDEFS(CColloquyMod, "Push privmsgs and highlights to your iPhone via Colloquy Mobile")
+
+NETWORKMODULEDEFS(CColloquyMod, "Push privmsgs and highlights to your iPhone via Colloquy Mobile")
