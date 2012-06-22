@@ -1,0 +1,14 @@
+Source: colloquypush
+Priority: extra
+Maintainer: Nick Robinson-Wall <nick@robinson-wall.com>
+Build-Depends: debhelper (>= 7.0.50~), znc-dev
+Standards-Version: 3.8.4
+Section: libs
+Homepage: https://github.com/wired/colloquypush/tree/master/znc
+
+Package: znc-colloquy
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, znc
+Description: A ZNC module for Colloquy Mobile push notifications
+ Pushes priv messages and hilights to the Colloquy Mobile app
