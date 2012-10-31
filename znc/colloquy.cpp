@@ -14,6 +14,7 @@
 #include <time.h>
 
 #define REQUIRESSL		1
+using namespace std;
 
 class CDevice {
 public:
