@@ -13,7 +13,7 @@ override_dh_auto_build:
 	znc-buildmod znc/colloquy.cpp
 
 override_dh_auto_clean:
-	rm znc/*.so
+	rm -f znc/*.so
 
 %:
 	dh $@ 
