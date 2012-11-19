@@ -1,3 +1,9 @@
+colloquypush (1.0.1) unstable; urgency=low
+
+  * Release for ZNC 1.0
+
+ -- protomouse <root@protomou.se>  Tue, 20 Nov 2012 00:52:00 +0100
+
 colloquypush (1.0.0) unstable; urgency=low
 
   * Initial Release.
